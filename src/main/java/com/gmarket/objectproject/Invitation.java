@@ -2,6 +2,6 @@ package com.gmarket.objectproject;
 
 import java.time.LocalDateTime;
 
-public class Invitation { //초대장
+public class Invitation {
   private LocalDateTime when;
 }
