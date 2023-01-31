@@ -22,7 +22,6 @@ public class Bag {
     return ticket != null;
   }
 
-  //내부에서만 사용하기 때문에 private로 변경
   private void setTicket(Ticket ticket){
     this.ticket = ticket;
   }
