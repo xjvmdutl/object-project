@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Money {
 
-  public static final money ZERO = Money.wons(0);
+  public static final Money ZERO = Money.wons(0);
 
   private final BigDecimal amount;
 
@@ -28,8 +28,8 @@ public class Money {
     return new Money(this.amount.subtract(amount.amount));
   }
 
-  public Money times(Money amount) {
-    return new Money(this.amount.multiply(amount.amount));
+  public Money times(double percent) {
+    return new Money(this.amount.multiply(BigDecimal.valueOf(percent)));
   }
 
   public boolean isLessThan(Money other) {
