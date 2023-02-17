@@ -9,9 +9,6 @@ public abstract class DiscountPolicy {
   private List<DiscountCondition> conditions = new ArrayList<>(); //하나의 할인 정책은 여러개의 할인 조건을 포함할 수 있다.
 
   public DiscountPolicy(DiscountCondition ... conditions){
-    /**
-     * 생성자의 파라미터 목록을 이용해 초기화에 필요한 정보를 전달하도록 강제하면 올바른 상태를 가진 객체의 생성을 보장할 수 있다.
-     */
     this.conditions = Arrays.asList(conditions);
   }
 
