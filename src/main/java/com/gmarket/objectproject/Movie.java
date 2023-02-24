@@ -1,52 +1,57 @@
 package com.gmarket.objectproject;
 
-import java.time.DayOfWeek;
 import java.time.Duration;
-import java.time.LocalTime;
-
+import java.util.Collections;
+import java.util.List;
 
 public class Movie {
 
-  private String title;
-  private Duration runningTime;
-  private Money fee;
-  private DiscountPolicy discountPolicy;
+  private String title; //영화 제목
+  private Duration runningTime; //상영 시간
+  private Money fee;  //기본 요금
+  private List<DiscountCondition> discountConditions; //할인 조건 목록
 
+  private MovieType movieType;  //할인 정책을 결정
+  //한 시점에는 하나의 값(discountAmount/ discountPercent)만 사용이 가능하다
+  private Money discountAmount; //할인 금액
+  private double discountPercent; //할인 비율
 
-  public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
-    this.title = title;
-    this.runningTime = runningTime;
-    this.fee = fee;
-    this.discountPolicy = discountPolicy;
+  public MovieType getMovieType() {
+    return movieType;
+  }
+  public void setMovieType(MovieType movieType) {
+    this.movieType = movieType;
   }
 
   public Money getFee() {
     return fee;
   }
 
-
-  public Money calculateMovieFee(Screening screening) {
-    return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+  public void setFee(Money fee) {
+    this.fee = fee;
   }
 
-  public static void main(String[] args) {
-    Movie avatar = new Movie("아바타", Duration.ofMinutes(120), Money.wons(10000),
-        new AmountDiscountPolicy(
-            Money.wons(800), new SequenceCondition(1),
-            new SequenceCondition(10),
-            new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10, 0), LocalTime.of(11, 59)),
-            new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10, 0), LocalTime.of(20, 59))
-        ));
+  public List<DiscountCondition> getDiscountConditions() {
+    return Collections.unmodifiableList(discountConditions);
+  }
 
-    Movie titanic = new Movie("타이타닉", Duration.ofMinutes(180), Money.wons(11000),
-        new PercentDiscountPolicy(
-            0.1,
-            new PeriodCondition(DayOfWeek.TUESDAY, LocalTime.of(14, 0), LocalTime.of(16, 59)),
-            new SequenceCondition(2),
-            new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10, 0), LocalTime.of(13, 59))
-        ));
+  public void setDiscountConditions(List<DiscountCondition> discountConditions) {
+    this.discountConditions = discountConditions;
+  }
 
-    Movie starWars = new Movie("스타워즈", Duration.ofMinutes(210), Money.wons(10000),
-        new NoneDefaultDiscountPolicy()); //할인 되지 않는 영화
+  public Money getDiscountAmount() {
+    return discountAmount;
+  }
+
+  public void setDiscountAmount(Money discountAmount) {
+    this.discountAmount = discountAmount;
+  }
+
+  public double getDiscountPercent() {
+    return discountPercent;
+  }
+
+  public void setDiscountPercent(double discountPercent) {
+    this.discountPercent = discountPercent;
   }
 }

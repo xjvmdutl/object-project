@@ -1,6 +1,7 @@
 package com.gmarket.objectproject;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Money {
 
@@ -8,16 +9,16 @@ public class Money {
 
   private final BigDecimal amount;
 
-  Money(BigDecimal amount) {
-    this.amount = amount;
-  }
-
   public static Money wons(long amount) {
     return new Money(BigDecimal.valueOf(amount));
   }
 
   public static Money wons(double amount) {
     return new Money(BigDecimal.valueOf(amount));
+  }
+
+  Money(BigDecimal amount) {
+    this.amount = amount;
   }
 
   public Money plus(Money amount) {
@@ -37,6 +38,27 @@ public class Money {
   }
 
   public boolean isGreaterThanOrEqual(Money other) {
-    return amount.compareTo(other.amount) < 0;
+    return amount.compareTo(other.amount) >= 0;
+  }
+
+  public boolean equals(Object object) {
+    if (this == object) {
+      return true;
+    }
+
+    if (!(object instanceof Money)) {
+      return false;
+    }
+
+    Money other = (Money) object;
+    return Objects.equals(amount.doubleValue(), other.amount.doubleValue());
+  }
+
+  public int hashCode() {
+    return Objects.hashCode(amount);
+  }
+
+  public String toString() {
+    return amount.toString() + "원";
   }
 }
