@@ -7,15 +7,15 @@ import java.util.List;
 
 public class Movie {
 
-  private String title; //영화 제목
-  private Duration runningTime; //상영 시간
-  private Money fee;  //기본 요금
-  private List<DiscountCondition> discountConditions; //할인 조건 목록
+  private String title;
+  private Duration runningTime;
+  private Money fee;  
+  private List<DiscountCondition> discountConditions;
 
-  private MovieType movieType;  //할인 정책을 결정
-  //한 시점에는 하나의 값(discountAmount/ discountPercent)만 사용이 가능하다
-  private Money discountAmount; //할인 금액
-  private double discountPercent; //할인 비율
+  private MovieType movieType;
+
+  private Money discountAmount;
+  private double discountPercent;
 
   public MovieType getMovieType() {
     return movieType;
