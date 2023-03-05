@@ -4,13 +4,13 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class DiscountCondition {
-  private DiscountConditionType type; //할인 조건의 타입
+  private DiscountConditionType type;
 
-  private int sequence; //상영 순번(순번 조건에서만 사용)
+  private int sequence;
 
-  private DayOfWeek dayOfWeek;  //요일
-  private LocalTime startTime;  //시작 시간
-  private LocalTime endTime;  //종료 시간
+  private DayOfWeek dayOfWeek;
+  private LocalTime startTime;
+  private LocalTime endTime;
 
   public DiscountConditionType getType() {
     return type;
