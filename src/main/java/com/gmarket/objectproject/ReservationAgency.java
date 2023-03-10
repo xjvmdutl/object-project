@@ -2,6 +2,7 @@ package com.gmarket.objectproject;
 
 public class ReservationAgency {
 
+
   public Reservation reservation(Screening screening, Customer customer, int audienceCount) {
 
     boolean discountable = checkDiscountable(screening);
