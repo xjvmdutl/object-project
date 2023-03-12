@@ -8,27 +8,19 @@ public class Screening {
   private int sequence;
   private LocalDateTime whenScreened;
 
-  public Movie getMovie() {
-    return movie;
+  public Reservation reserve(Customer customer, int audienceCount) { //메시지
+    return new Reservation(customer, this, calculateFee(audienceCount), audienceCount);
   }
 
-  public void setMovie(Movie movie) {
-    this.movie = movie;
+  private Money calculateFee(int audienceCount) {
+    return movie.calculateMovieFee(this).times(audienceCount);
   }
 
   public LocalDateTime getWhenScreened() {
     return whenScreened;
   }
 
-  public void setWhenScreened(LocalDateTime whenScreened) {
-    this.whenScreened = whenScreened;
-  }
-
   public int getSequence() {
     return sequence;
-  }
-
-  public void setSequence(int sequence) {
-    this.sequence = sequence;
   }
 }
