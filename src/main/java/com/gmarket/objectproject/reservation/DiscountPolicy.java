@@ -1,4 +1,4 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,5 @@ public abstract class DiscountPolicy {
     }
     return Money.ZERO;
   }
-
-
-
   abstract protected Money getDiscountAmount(Screening screening);
 }

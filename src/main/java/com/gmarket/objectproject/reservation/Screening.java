@@ -23,4 +23,8 @@ public class Screening {
   public int getSequence() {
     return sequence;
   }
+
+  public Movie getMovie() {
+    return movie;
+  }
 }

@@ -1,4 +1,4 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

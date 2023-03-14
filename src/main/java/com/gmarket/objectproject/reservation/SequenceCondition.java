@@ -1,4 +1,4 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 public class SequenceCondition implements DiscountCondition{
   private int sequence;
