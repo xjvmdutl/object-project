@@ -1,4 +1,4 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 public enum MovieType {
   AMOUNT_DISCOUNT,

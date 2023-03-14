@@ -1,4 +1,4 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 import java.math.BigDecimal;
 import java.util.Objects;

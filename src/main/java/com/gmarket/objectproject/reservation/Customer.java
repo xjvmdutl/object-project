@@ -1,4 +1,4 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 public class Customer {
   private String name;

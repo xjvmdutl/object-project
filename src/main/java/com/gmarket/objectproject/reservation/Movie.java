@@ -1,8 +1,6 @@
-package com.gmarket.objectproject;
+package com.gmarket.objectproject.reservation;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

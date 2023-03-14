@@ -1,4 +1,4 @@
-package com.gmarket.objectproject.pre.test;
+package com.gmarket.objectproject.invitation;
 
 public class Bag {
   private Long amount;

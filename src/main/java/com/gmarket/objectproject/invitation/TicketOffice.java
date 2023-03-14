@@ -1,4 +1,4 @@
-package com.gmarket.objectproject.pre.test;
+package com.gmarket.objectproject.invitation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
