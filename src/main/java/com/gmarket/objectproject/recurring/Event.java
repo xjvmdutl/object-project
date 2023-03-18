@@ -30,12 +30,6 @@ public class Event {
   }
 
   public void reschedule(RecurringSchedule schedule) {
-    //Contract.Requires(isSatisfied(schedule)); //C#에서만 사용가능
-    /**
-     * isSatisfied 메서드의 반환값이 true일 경우에만 reschedule 메서드를 호출할 수 있다는 것을 명시적으로 표현한다.
-     * 이렇게 작성된 계약은 문서화로 끝나는 것이 아니라 제약 조건의 만족여부를 실행 중에 체클할 수 있다.
-     * 또한 이 조건들을  코드로부터 추출해서 문서를 만들어주는 자동화 도구도 제공한다.
-     */
     from = LocalDateTime.of(from.toLocalDate().plusDays(daysDistance(schedule)), schedule.getFrom());
     duration = schedule.getDuration();
   }
