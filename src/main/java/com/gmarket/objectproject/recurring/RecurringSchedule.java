@@ -6,10 +6,10 @@ import java.time.LocalTime;
 
 public class RecurringSchedule {
 
-  private String subject; //주제
-  private DayOfWeek dayOfWeek; //반복될 요일
-  private LocalTime from; //시작 시간
-  private Duration duration; // 기간
+  private String subject;
+  private DayOfWeek dayOfWeek;
+  private LocalTime from;
+  private Duration duration;
 
   public RecurringSchedule(String subject, DayOfWeek dayOfWeek, LocalTime from,
       Duration duration) {
