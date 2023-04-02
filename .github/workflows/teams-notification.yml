@@ -23,7 +23,9 @@ jobs:
           const title = "New pull request";
           const summary = `A new pull request has been created in the repository by ${process.env.PR_USER}`;
           const text = `Title: "${process.env.PR_TITLE}"\n\nDescription: "${process.env.PR_BODY}"`;
-
+          
+          console.log(url);
+          
           fetch(url, {
             method: "POST",
             headers: {
