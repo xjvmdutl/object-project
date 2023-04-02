@@ -1,0 +1,37 @@
+name: Send Teams Message on PR Creation
+on:
+  pull_request:
+    types: [opened]
+
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR Information
+        id: pr
+        run: |
+          echo "::set-output name=title::$(echo ${GITHUB_EVENT_PATH} | xargs -n 1 jq -r '.pull_request.title')"
+          echo "::set-output name=description::$(echo ${GITHUB_EVENT_PATH} | xargs -n 1 jq -r '.pull_request.body')"
+          echo "::set-output name=created_by::$(echo ${GITHUB_EVENT_PATH} | xargs -n 1 jq -r '.pull_request.user.login')"
+
+      - name: Send Teams Message
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          TITLE: ${{ steps.pr.outputs.title }}
+          DESCRIPTION: ${{ steps.pr.outputs.description }}
+          CREATED_BY: ${{ steps.pr.outputs.created_by }}
+        run: |
+          curl -H "Content-Type: application/json" -d '{
+              "@type": "MessageCard",
+              "@context": "http://schema.org/extensions",
+              "themeColor": "0078D7",
+              "title": "'"${TITLE}"'",
+              "summary": "'"${CREATED_BY}"' created a new pull request",
+              "sections": [{
+                  "activityTitle": "'"${TITLE}"'",
+                  "activitySubtitle": "Created by "'"${CREATED_BY}"'",
+                  "activityImage": "'"${{ github.event.pull_request.user.avatar_url }}"'",
+                  "text": "'"${DESCRIPTION}"'"
+              }]
+          }' $TEAMS_WEBHOOK_URL
