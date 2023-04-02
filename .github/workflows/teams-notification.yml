@@ -34,4 +34,4 @@ jobs:
                   "activityImage": "'"${{ github.event.pull_request.user.avatar_url }}"'",
                   "text": "'"${DESCRIPTION}"'"
               }]
-          }' $TEAMS_WEBHOOK_URL
+          }' -X POST $TEAMS_WEBHOOK_URL
