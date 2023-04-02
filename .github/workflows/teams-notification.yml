@@ -12,13 +12,13 @@ on:
     types: [created]
 
 jobs:
-  label:
+  send-notification:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    
     steps:
-      - name: Print the input name to STDOUT
-        run: echo The username is ${{ inputs.username }}
+      - name: Send Teams Notification
+        uses: appleboy/teams-action@master
+        with:
+          url: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          title: "New Push Notification"
+          summary: "A new push has been made to the repository."
 
