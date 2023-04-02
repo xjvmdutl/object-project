@@ -18,8 +18,7 @@ jobs:
       contents: read
       pull-requests: write
     
-
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Print the input name to STDOUT
+        run: echo The username is ${{ inputs.username }}
+
