@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        run: npm install node-fetch
+        run: npm install node-fetch esm
 
       - name: Send Teams Message
         env:
@@ -17,7 +17,7 @@ jobs:
           PR_BODY: ${{ github.event.pull_request.body }}
           PR_USER: ${{ github.event.pull_request.user.login }}
         run: |
-          node -e '
+          node --experimental-module -e '
           const fetch = require("node-fetch");
           const url = process.env.TEAMS_WEBHOOK_URL;
           const title = "New pull request";
