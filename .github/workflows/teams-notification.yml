@@ -17,7 +17,7 @@ jobs:
           PR_BODY: ${{ github.event.pull_request.body }}
           PR_USER: ${{ github.event.pull_request.user.login }}
         run: |
-          node --experimental-module -e '
+          node --experimental-modules -e '
           const fetch = require("node-fetch");
           const url = process.env.TEAMS_WEBHOOK_URL;
           const title = "New pull request";
