@@ -7,18 +7,40 @@ jobs:
   send-message:
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        run: npm install node-fetch
+
       - name: Send Teams Message
-        uses: moraleslazaro/http-request-action@v1
-        with:
-          url: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          method: POST
-          headers: |
-            {
-              "Content-Type": "application/json"
-            }
-          body: |
-            {
-              "title": "New pull request",
-              "summary": "A new pull request has been created in the repository by '${{ github.event.pull_request.user.login }}'",
-              "text": "Title: '${{ github.event.pull_request.title }}'\n\nDescription: '${{ github.event.pull_request.body }}'"
-            }
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+        run: |
+          node -e '
+          const fetch = require("node-fetch");
+          const url = process.env.TEAMS_WEBHOOK_URL;
+          const title = "New pull request";
+          const summary = `A new pull request has been created in the repository by ${process.env.PR_USER}`;
+          const text = `Title: "${process.env.PR_TITLE}"\n\nDescription: "${process.env.PR_BODY}"`;
+
+          fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              "@type": "MessageCard",
+              "@context": "http://schema.org/extensions",
+              "themeColor": "0072C6",
+              "summary": summary,
+              "sections": [
+                {
+                  "activityTitle": title,
+                  "text": text,
+                  "markdown": true
+                }
+              ]
+            })
+          });
+          '
