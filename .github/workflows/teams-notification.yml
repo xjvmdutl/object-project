@@ -8,8 +8,7 @@
 name: test
 on: 
   pull_request:
-  branch_protection_rule:
-    types: [created]
+    types: [opened]
 
 jobs:
   send-notification:
@@ -20,5 +19,6 @@ jobs:
         with:
           url: ${{ secrets.TEAMS_WEBHOOK_URL }}
           title: "New Push Notification"
-          summary: "A new push has been made to the repository."
+          summary: "A new pull request has been created in the repository by ${{ github.event.pull_request.user.login }}"
+          text: "Title: ${{ github.event.pull_request.title }}\n\nDescription: ${{ github.event.pull_request.body }}"
 
