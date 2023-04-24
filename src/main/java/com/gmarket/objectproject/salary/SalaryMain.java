@@ -1,20 +1,12 @@
 package com.gmarket.objectproject.salary;
 
+import static com.gmarket.objectproject.salary.Salary.sumOfBasePays;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class SalaryMain {
-
-  private static List<String> employees = new ArrayList<>(
-      Arrays.asList("직원A", "직원B", "직원C", "아르바이트D", "아르바이트E", "아르바이트F"));
-  private static double[] basePays = new double[]{400, 300, 250, 1, 1, 1.5};
-
-  private static boolean[] hourlys = new boolean[]{false, false, false, true, true, true};
-  private static int[] timeCards = new int[]{0, 0, 0, 120, 120, 120};
 
   public static void main(String[] args) {
     String operation = "basePays";
@@ -30,35 +22,9 @@ public class SalaryMain {
 
   private static void calculatePay(String name) {
     double taxRate = getTaxRate();
-    double pay;
-    if (isHourly(name)) {
-      pay = calculateHourlyPayFor(name, taxRate);
-    } else {
-      pay = calculatePayFor(name, taxRate);
-    }
+    double pay = Salary.calculatePay(name, taxRate);
     System.out.println(describeResult(name, pay));
   }
-
-
-  private static boolean isHourly(String name) {
-    return hourlys[employees.indexOf(name)];
-  }
-
-  private static double calculateHourlyPayFor(String name, double taxRate) {
-    int index = employees.indexOf(name);
-    double basePay = basePays[index] * timeCards[index];
-    return basePay - (basePay * taxRate);
-  }
-  private static void sumOfBasePays() {
-    int result = 0;
-    for (String name : employees) {
-      if(!isHourly(name)){
-        result += basePays[employees.indexOf(name)];
-      }
-    }
-    System.out.println(result);
-  }
-
 
   private static double getTaxRate() {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -69,14 +35,11 @@ public class SalaryMain {
       throw new RuntimeException(e);
     }
   }
-
-  private static double calculatePayFor(String name, double taxRate) {
-    int index = employees.indexOf(name);
-    double basePay = basePays[index];
-    return basePay - (basePay * taxRate);
-  }
-
   private static String describeResult(String name, double pay) {
     return "이름: " + name + ", 급여: " + pay;
+  }
+
+  private static void sumOfBasePays() {
+    System.out.println(Salary.sumOfBasePays());
   }
 }
