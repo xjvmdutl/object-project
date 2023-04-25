@@ -1,14 +1,28 @@
 package com.gmarket.objectproject.salary;
 
-import static com.gmarket.objectproject.salary.Salary.sumOfBasePays;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SalaryMain {
 
+  private static List<Employee> employees = new ArrayList<>() {
+    {
+      add(new Employee("직원A", 400, false, 0));
+      add(new Employee("직원B", 300, false, 0));
+      add(new Employee("직원C", 250, false, 0));
+      add(new Employee("아르바이트D", 1, true, 120));
+      add(new Employee("아르바이트E", 1, true, 120));
+      add(new Employee("아르바이트F", 1, true, 120));
+    }
+  };
+
   public static void main(String[] args) {
+
     String operation = "basePays";
     switch (operation) {
       case "pay":
@@ -21,8 +35,15 @@ public class SalaryMain {
   }
 
   private static void calculatePay(String name) {
+    Employee em = null;
     double taxRate = getTaxRate();
-    double pay = Salary.calculatePay(name, taxRate);
+    for (Employee employee : employees) {
+      if (employee.getName().equals(name)) {
+        em = employee;
+      }
+      break;
+    }
+    double pay = em.calculatePay(taxRate);
     System.out.println(describeResult(name, pay));
   }
 
@@ -35,11 +56,16 @@ public class SalaryMain {
       throw new RuntimeException(e);
     }
   }
+
   private static String describeResult(String name, double pay) {
     return "이름: " + name + ", 급여: " + pay;
   }
 
   private static void sumOfBasePays() {
-    System.out.println(Salary.sumOfBasePays());
+    int result = 0;
+    for (Employee employee : employees) {
+      result += employee.monthlyBasePay();
+    }
+    System.out.println(result);
   }
 }
