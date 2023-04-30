@@ -12,12 +12,12 @@ public class SalaryMain {
 
   private static List<Employee> employees = new ArrayList<>() {
     {
-      add(new Employee("직원A", 400, false, 0));
-      add(new Employee("직원B", 300, false, 0));
-      add(new Employee("직원C", 250, false, 0));
-      add(new Employee("아르바이트D", 1, true, 120));
-      add(new Employee("아르바이트E", 1, true, 120));
-      add(new Employee("아르바이트F", 1, true, 120));
+      add(new SalariedEmployee("직원A", 400));
+      add(new SalariedEmployee("직원B", 300));
+      add(new SalariedEmployee("직원C", 250));
+      add(new HourlyEmployee("아르바이트D", 1, 120));
+      add(new HourlyEmployee("아르바이트E", 1, 120));
+      add(new HourlyEmployee("아르바이트F", 1, 120));
     }
   };
 
