@@ -1,10 +1,13 @@
-package com.gmarket.objectproject.reservation;
+package com.gmarket.objectproject.reservation.pricing;
 
+import com.gmarket.objectproject.reservation.DiscountPolicy;
+import com.gmarket.objectproject.reservation.Money;
+import com.gmarket.objectproject.reservation.Screening;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OverlappedDiscountPolicy extends DiscountPolicy{
+public class OverlappedDiscountPolicy extends DiscountPolicy {
 
   private List<DiscountPolicy> discountPolicies = new ArrayList<>();
 
