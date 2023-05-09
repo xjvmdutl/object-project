@@ -7,17 +7,19 @@ import java.util.List;
 public abstract class DiscountPolicy {
   private List<DiscountCondition> conditions = new ArrayList<>();
 
-  public DiscountPolicy(DiscountCondition ... conditions){
+  public DiscountPolicy(DiscountCondition ... conditions) {
     this.conditions = Arrays.asList(conditions);
   }
 
-  public Money calculateDiscountAmount(Screening screening){
-    for(DiscountCondition each: conditions){
-      if(each.isSatisfiedBy(screening)){
+  public Money calculateDiscountAmount(Screening screening) {
+    for(DiscountCondition each : conditions) {
+      if (each.isSatisfiedBy(screening)) {
         return getDiscountAmount(screening);
       }
     }
-    return Money.ZERO;
+
+    return screening.getMovieFee();
   }
-  abstract protected Money getDiscountAmount(Screening screening);
+
+  abstract protected Money getDiscountAmount(Screening Screening);
 }
