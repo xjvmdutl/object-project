@@ -11,17 +11,24 @@ public class Movie {
   private Money fee;
   private DiscountPolicy discountPolicy;
 
-  public Movie(String title, Duration runningTime, Money fee, DiscountPolicy discountPolicy) {
+  public Movie(String title, Duration runningTime, Money fee) {
     this.title = title;
     this.runningTime = runningTime;
     this.fee = fee;
-    this.discountPolicy = discountPolicy;
+    //this.discountPolicy = discountPolicy;
+    this.discountPolicy = ServiceLocator.discountPolicy();
   }
 
   public Money getFee() {
     return fee;
   }
 
+  public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+    this.discountPolicy = discountPolicy;
+  }
+  public Money calculateDiscountAmount(Screening screening, DiscountPolicy discountPolicy) {
+    return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+  }
   public Money calculateMovieFee(Screening screening) {
     return fee.minus(discountPolicy.calculateDiscountAmount(screening));
   }
