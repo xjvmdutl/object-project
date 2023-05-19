@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class PropertiesTest {
 
+
+
   @Test
   public void propertiesTest(){
     Properties properties = new Properties();

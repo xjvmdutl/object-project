@@ -1,14 +1,15 @@
 package com.gmarket.objectproject.playlist;
 
-public class PersonalPlaylist extends Playlist{
+public class PersonalPlaylist {
+  private Playlist playlist = new Playlist();
+  public void append(Song song){
+    playlist.append(song);
+  }
+
   public void remove(Song song){
-    getTracks().remove(song);
-    getSingers().remove(song.getSinger()); //이걸 하지 않는다면 Singer에는 남아있지만 track에만 제거된다.
-    /**
-     * 자식 클래스가 부모 클래스의 메서드를 오버라이딩하거나 불필요한 인터페이스를 상속받지 않았음에도 부모 클래스를 수정할 때 자식 클래스를 함께 수정해야 할 수도 있다는 시실을 보여준다.
-     * 상속을 사용하면 자식 클래스가 부모 클래스의 구현에 강하게 결합되기 때문에 이 문제를 피하기는 어렵다.
-     * 코드 재사용을 위한 상속은 부모 클래스와 자식 클래스를 강하게 결합시키기 때문에 함께 수정해야하는 상황 역시 빈번하게 발생할 수밖에 없는 것이다.
-     * - 클래스를 상속하면 결합도로 인해 자식 클래스와 부모 클래스의 구현을 영원히 변경하지 않거나 자식 클래스와 부모 클래스를 동시에 변경하거나 둘 중 하나를 선택할 수 밖에 없다.
-     */
+    playlist.getTracks().remove(song);
+    playlist.getSingers().remove(song.getSinger()); //해당 이슈는 합성으로 변경하여도 해결되지는 않는다.
+    //다만 그래도 합성이 좋은 이유는 향후 playlist 내부 구현을 변경하더라도 파급효과를 최대한 PersonalPlaylist 내부로 캡슐화 할 수 있기 떄문이다.
+    //몽키 패치: 현재 실행중인 환경에만 영향을 미치도록 지역적으로 코드를 수정하거나 확장하는 것을 가리킨다 -> 루비 = 열린 클래스, c# = 확장 메서드, 자바 = 지원하지 않아 바이트 코드를 직접 넣거나 AOP 사용
   }
 }
