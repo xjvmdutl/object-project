@@ -2,7 +2,7 @@ package com.gmarket.objectproject.phone_bill;
 
 import java.time.Duration;
 
-public class NightlyDiscountPhone extends Phone { //추상화에 의존
+public class NightlyDiscountPhone extends Phone {
 
   private static final int LATE_NIGHT_HOUR = 22;
 
@@ -11,34 +11,13 @@ public class NightlyDiscountPhone extends Phone { //추상화에 의존
   private Money regularAmount;
   private Duration seconds;
 
-  public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds, double taxRate) {
-    super(taxRate);
-    this.nightlyAmount = nightlyAmount;
-    this.regularAmount = regularAmount;
-    this.seconds = seconds;
-  }
-
-
-  //private List<Call> calls = new ArrayList<>();
-
-  /*
-
   public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds) {
     this.nightlyAmount = nightlyAmount;
     this.regularAmount = regularAmount;
     this.seconds = seconds;
   }
-   */
 
-  /*
-  public Money calculateFee() { //부모의 코드와 동일해졋고 이제 부모 클래스로 옮기면 된다.
-    Money result = Money.ZERO;
-    for (Call call : calls) {
-      result = result.plus(calculateCallFee(call));
-    }
-    return result;
-  }
-   */
+
 
   @Override
   protected Money calculateCallFee(Call call) {
@@ -48,4 +27,10 @@ public class NightlyDiscountPhone extends Phone { //추상화에 의존
       return regularAmount.times(call.getDuration().getSeconds() / seconds.getSeconds());
     }
   }
+  /*
+  @Override
+  protected Money afterCalculated(Money fee) {
+    return fee; //요금을 수정할 필요 x
+  }
+   */
 }
