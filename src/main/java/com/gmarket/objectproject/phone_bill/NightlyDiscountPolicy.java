@@ -2,8 +2,7 @@ package com.gmarket.objectproject.phone_bill;
 
 import java.time.Duration;
 
-public class NightlyDiscountPhone extends Phone {
-
+public class NightlyDiscountPolicy extends BasicRatePolicy{
   private static final int LATE_NIGHT_HOUR = 22;
 
   private Money nightlyAmount;
@@ -11,7 +10,7 @@ public class NightlyDiscountPhone extends Phone {
   private Money regularAmount;
   private Duration seconds;
 
-  public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds) {
+  public NightlyDiscountPolicy(Money nightlyAmount, Money regularAmount, Duration seconds) {
     this.nightlyAmount = nightlyAmount;
     this.regularAmount = regularAmount;
     this.seconds = seconds;
@@ -27,10 +26,4 @@ public class NightlyDiscountPhone extends Phone {
       return regularAmount.times(call.getDuration().getSeconds() / seconds.getSeconds());
     }
   }
-  /*
-  @Override
-  protected Money afterCalculated(Money fee) {
-    return fee; //요금을 수정할 필요 x
-  }
-   */
 }
