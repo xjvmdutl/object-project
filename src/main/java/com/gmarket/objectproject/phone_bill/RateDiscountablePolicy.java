@@ -1,13 +1,11 @@
 package com.gmarket.objectproject.phone_bill;
 
-import java.time.Duration;
-
-public class RateDiscountableRegularPhone extends RegularPhone {
+public class RateDiscountablePolicy extends AdditionalRatePolicy {
 
   private Money discountAmount;
 
-  public RateDiscountableRegularPhone(Money amount, Duration seconds, Money discountAmount) {
-    super(amount, seconds);
+  public RateDiscountablePolicy(Money discountAmount, RatePolicy next) {
+    super(next);
     this.discountAmount = discountAmount;
   }
 
