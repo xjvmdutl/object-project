@@ -1,9 +1,12 @@
-package com.gmarket.objectproject.phone_bill;
+package com.gmarket.objectproject.phone_bill.basic;
 
 
+import com.gmarket.objectproject.phone_bill.BasicRatePolicy;
+import com.gmarket.objectproject.phone_bill.Call;
+import com.gmarket.objectproject.phone_bill.Money;
 import java.time.Duration;
 
-public class RegularPolicy extends BasicRatePolicy{
+public class RegularPolicy extends BasicRatePolicy {
   private Money amount;
   private Duration seconds;
 

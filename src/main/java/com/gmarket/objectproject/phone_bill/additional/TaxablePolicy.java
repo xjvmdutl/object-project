@@ -1,4 +1,8 @@
-package com.gmarket.objectproject.phone_bill;
+package com.gmarket.objectproject.phone_bill.additional;
+
+import com.gmarket.objectproject.phone_bill.AdditionalRatePolicy;
+import com.gmarket.objectproject.phone_bill.Money;
+import com.gmarket.objectproject.phone_bill.RatePolicy;
 
 public class TaxablePolicy extends AdditionalRatePolicy {
 
