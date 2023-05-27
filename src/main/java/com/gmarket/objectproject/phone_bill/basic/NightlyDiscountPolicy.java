@@ -1,8 +1,11 @@
-package com.gmarket.objectproject.phone_bill;
+package com.gmarket.objectproject.phone_bill.basic;
 
+import com.gmarket.objectproject.phone_bill.BasicRatePolicy;
+import com.gmarket.objectproject.phone_bill.Call;
+import com.gmarket.objectproject.phone_bill.Money;
 import java.time.Duration;
 
-public class NightlyDiscountPolicy extends BasicRatePolicy{
+public class NightlyDiscountPolicy extends BasicRatePolicy {
   private static final int LATE_NIGHT_HOUR = 22;
 
   private Money nightlyAmount;
