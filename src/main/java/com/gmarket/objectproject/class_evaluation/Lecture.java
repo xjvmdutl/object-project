@@ -37,4 +37,17 @@ public class Lecture {
   private long failCount() {
     return scores.size() - passCount();
   }
+
+  public String stats(){
+    return String.format("Title: %s, Evaluation Method: %s", title, getEvaluationMethod());//현재 객체에게 getEvaluationMethod 메시지를 전송하는것이다.
+    //현재 클래스의 메서드를 호출하는 것이 아닌 현재 객체에게 메시지를 전송하는 것이다. -> 여기서 현재는 self 참조가 가리키는 객체이다.
+    //self 참조가 가리키는 자기 자신에게 메시지를 전송하는 것을 self 전송이라고 부른다.
+    //self 전송을 이해하기 위해서는 self 참조가 가리키는 바로 그 객체에서부터 메시지 탐색을 다시 시작한다는 사실을 기억하자!!
+
+  }
+
+
+  public String getEvaluationMethod() {
+    return "Pass or Fail";
+  }
 }
