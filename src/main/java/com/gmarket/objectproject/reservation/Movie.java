@@ -1,6 +1,8 @@
 package com.gmarket.objectproject.reservation;
 
+import com.gmarket.objectproject.reservation.exception.InvalidScreeningException;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,6 +32,12 @@ public class Movie {
     return fee.minus(discountPolicy.calculateDiscountAmount(screening));
   }
   public Money calculateMovieFee(Screening screening) {
+    if(screening == null || screening.getStartTime().isAfter(LocalDateTime.now()))
+      throw new InvalidScreeningException();
     return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+  }
+
+  public Duration getRunningTime() {
+    return runningTime;
   }
 }

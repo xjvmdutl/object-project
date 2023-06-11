@@ -17,6 +17,9 @@ public class Screening {
   public LocalDateTime getStartTime() {
     return whenScreened;
   }
+  public LocalDateTime getEndTime() {
+    return whenScreened.plus(movie.getRunningTime());
+  }
 
   public boolean isSequence(int sequence) {
     return this.sequence == sequence;
