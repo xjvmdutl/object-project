@@ -1,5 +1,6 @@
 package com.gmarket.objectproject.phone_bill;
 
+import com.gmarket.objectproject.phone.Bill;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +18,12 @@ public class Phone {
     return Collections.unmodifiableList(calls);
   }
 
-  public Money calculateFee(){
+  public void call(Call call) {
+    calls.add(call);
+  }
+
+  public Money calculateFee() {
     return ratePolicy.calculateFee(this);
   }
+
 }
